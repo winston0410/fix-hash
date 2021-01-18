@@ -1,11 +1,11 @@
 module.exports = {
-  experiments: {
-    source: 'skypack'
-  },
+  // experiments: {
+  //   source: 'skypack'
+  // },
   mount: {
-    public: { url: `/public`, static: false, resolve: false },
+    public: { url: `/`, static: false, resolve: false },
     data: { url: `/public`, static: true, resolve: false },
-    src: { url: '/_dist_', static: false, resolve: false }
+    src: { url: '/_dist_', static: false, resolve: true }
   },
   plugins: [
     '@snowpack/plugin-dotenv',
@@ -14,18 +14,18 @@ module.exports = {
       assetManifest: 'asset-manifest.json'
     }]
   ],
-  install: [
-    '@babel/runtime/helpers/slicedToArray',
-    '@babel/runtime/helpers/objectWithoutProperties',
-    '@babel/runtime/helpers/extends'
-  ],
-  installOptions: {
+  packageOptions: {
     sourceMap: true,
     env: {
       ENV_NAME: process.env.NODE_ENV
     },
     treeshake: false,
-    installTypes: false
+    installTypes: false,
+    knownEntrypoints: [
+      '@babel/runtime/helpers/slicedToArray',
+      '@babel/runtime/helpers/objectWithoutProperties',
+      '@babel/runtime/helpers/extends'
+    ]
   },
   devOptions: {
     port: 3001,
@@ -39,12 +39,6 @@ module.exports = {
   buildOptions: {
     out: 'build',
     clean: true,
-    sourceMaps: true
+    sourcemap: true
   },
-  proxy: {
-    /* ... */
-  },
-  alias: {
-
-  }
 }
