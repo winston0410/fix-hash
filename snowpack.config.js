@@ -1,7 +1,4 @@
 module.exports = {
-  // experiments: {
-  //   source: 'skypack'
-  // },
   mount: {
     public: { url: `/`, static: false, resolve: false },
     data: { url: `/public`, static: true, resolve: false },
@@ -15,6 +12,7 @@ module.exports = {
     }]
   ],
   packageOptions: {
+    source: 'remote',
     sourceMap: true,
     env: {
       ENV_NAME: process.env.NODE_ENV
